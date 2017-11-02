@@ -12,9 +12,9 @@ public class Main {
 	public static void main(String args[]) {
 		JFrame mainmenu = new JFrame("The Baseball Trajectory Calculator - by Carter Weiss");
 		JPanel panel = new JPanel();
-		JLabel exitvelocityindicator = new JLabel("Exit Velocity:");
+		JLabel exitvelocityindicator = new JLabel("Exit Velocity (Enter in degrees):");
 		JTextField exitvelocityfield = new JTextField(3);
-		JLabel launchangleindicator = new JLabel("Launch Angle:");
+		JLabel launchangleindicator = new JLabel("Launch Angle (Enter in miles per hour):");
 		JTextField launchanglefield = new JTextField(3);
 		JButton calculate = new JButton("Begin Calculations");
 		panel.add(exitvelocityindicator);
@@ -26,10 +26,10 @@ public class Main {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int exitvelocity = Integer.parseInt(exitvelocityfield.getText());
-				int launchangle = Integer.parseInt(launchanglefield.getText());
-				int x = (int) (exitvelocity * Math.cos(launchangle));
-				int y = (int) (exitvelocity * Math.sin(launchangle));
+				double exitvelocity = Double.parseDouble(exitvelocityfield.getText());
+				double launchangle = (Double.parseDouble(launchanglefield.getText()) * Math.PI) / 180;
+				int x = (int) Math.round(exitvelocity * Math.cos(launchangle));
+				int y = (int) Math.round(exitvelocity * Math.sin(launchangle));
 			}
 		});
 		mainmenu.add(panel);
